@@ -1,0 +1,45 @@
+[project]
+name = "job-finder"
+version = "0.1.0"
+description = "Find jobs and analyze job descriptions using AI"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "celery (>=5.4.0,<6.0.0)",
+    "django (>=5.1.5,<6.0.0)",
+    "django-celery-beat (>=2.7.0,<3.0.0)",
+    "django-environ (>=0.12.0,<0.13.0)",
+    "openai (>=1.60.1,<2.0.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)",
+    "pygithub (>=2.5.0,<3.0.0)",
+    "redis (>=5.2.1,<6.0.0)",
+    "spacy (>=3.8.4,<4.0.0)"
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+exclude = [".venv", "__pycache__"]
+fix = true
+
+[tool.ruff.lint]
+select = ["I", "F401"]
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true  # Combina múltiplos 'as' em um único import
+force-single-line = false  # Permite múltiplos imports em uma única linha
+case-sensitive = false  # Torna a ordenação insensível a maiúsculas/minúsculas
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["D"]
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+pytest-django = "^4.9.0"
+flower = "^2.0.1"
+pytest-mock = "^3.14.0"
+
