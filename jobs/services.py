@@ -2,6 +2,7 @@ import logging
 from typing import List, Optional
 
 from django.db import transaction
+from django.db.models import QuerySet
 from django.utils import timezone
 
 from job_finder import settings
@@ -74,7 +75,7 @@ class GithubService:
 class JobAnalyzerService:
     def analyze(self) -> None:
         logger.info('Starting to analyze job descriptions')
-        job_descriptions: List[JobDescription] = JobDescription.objects.filter(is_analyzed=False, is_sanitized=True)
+        job_descriptions = JobDescription.objects.filter(is_analyzed=False, is_sanitized=True)
         logger.info(f'Found {len(job_descriptions)} job descriptions to analyze.')
         job_analyzer = JobAnalyzer(settings.OPENAI_API_KEY)
 
@@ -120,7 +121,7 @@ class JobSanitizerService:
 
         self._bulk_save_job_descriptions(updated_job_descriptions)
 
-    def _fetch_job_descriptions(self) -> List[JobDescription]:
+    def _fetch_job_descriptions(self):
         return JobDescription.objects.filter(is_analyzed=False, is_sanitized=False)
 
     def _bulk_save_job_descriptions(self, job_descriptions: List[JobDescription]) -> None:

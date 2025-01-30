@@ -29,17 +29,20 @@ select = ["I", "F401"]
 quote-style = "single"
 
 [tool.ruff.lint.isort]
-combine-as-imports = true  # Combina múltiplos 'as' em um único import
-force-single-line = false  # Permite múltiplos imports em uma única linha
-case-sensitive = false  # Torna a ordenação insensível a maiúsculas/minúsculas
+combine-as-imports = true
+force-single-line = false
+case-sensitive = false
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*.py" = ["D"]
-
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
 pytest-django = "^4.9.0"
 flower = "^2.0.1"
 pytest-mock = "^3.14.0"
+django-stubs = "^5.1.2"
+mypy = "^1.14.1"
 
+[tool.django-stubs]
+django_settings_module = "job_finder.settings"
