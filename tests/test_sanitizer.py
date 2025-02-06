@@ -15,6 +15,7 @@ def test_sanitize_removes_person_entity(sanitizer):
     assert 'New York' not in sanitized_text
     assert 'My name is and I live in' in sanitized_text
 
+
 def test_sanitize_removes_org_entity(sanitizer):
     text = 'I work at Mercadinho do João.'
     sanitized_text = sanitizer.sanitize(text)
