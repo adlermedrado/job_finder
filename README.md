@@ -106,6 +106,36 @@ celery -A job_finder beat --loglevel=info
 docker-compose up -d
 ```
 
+### 📌 Initial Sample Data (Optional)
+If you want to load **initial configuration data** for Celery workers, Celery Beat, and job sources, run the following SQL script:
+```bash
+psql -U <your_user> -d <your_database> -f docs/sources_automation_samples.sql
+```
+⚠ **Note**: This data is for example purposes only and has not been included in Django migrations to keep a clear separation between database structure and sample data. Feel free to modify it as needed.
+
+### 🔑 Django Admin Setup
+To manage jobs, sources, and analysis criteria via Django Admin,
+you need to **create a superuser**:
+```bash
+poetry run python manage.py createsuperuser
+```
+
+Or using venv:
+```bash
+python manage.py createsuperuser
+```
+
+You’ll be prompted to enter:
+* **Username**
+* **Email**
+* **Password**
+
+After creation, start the server and access Django Admin at:
+
+**🔗 http://127.0.0.1:8000/admin/**
+
+Log in with the credentials you just created.
+
 ### 👨‍💻 Contributing
 
 Contributions are welcome! To contribute:
